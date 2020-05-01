@@ -1,0 +1,35 @@
+Informações do Trabalho 
+
+====================================
+
+- link hospedagem http://genfro.eu-4.evennode.com/login
+
+==================================
+
+Observações
+
+Boa noite professor  , resolvi escrever esse txt para explicar algumas situações , porque  o  trabalho não saiu como que queria, como exemplo colocar mais ações e recursos, deixando ele meio simples , porem conseguir seguir a estrutura que envie para senhor.
+
+
+Não consegui fazer área de cadastro de empresa (não esta previsto no meu plano de desenvolvimento descrito para senhor);
+
+==================================
+
+
+Dados para login Professor 
+
+
+Administrador: Ricardo Nascimento
+Senha : ifms2018
+
+
+
+
+=========================================
+
+Autor: Marcos Lopes Gonçalves INF0 5B
+
+=========================================
+
+
+

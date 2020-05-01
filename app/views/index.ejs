@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Painel Controle Frota</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  </head>
+  <body >
+    <header>
+      <div class="logo">
+        <img src="img/logo2.png">
+      </div>
+      <nav>
+        <div class="dropdown">
+          <button class="btn_abre">Painel Gerenciamento</button>
+          <div class="dropdown-content">
+            <div class="cliente">
+              <div class="foto">
+                <img src="<%=foto%>">
+              </div>
+              <div>
+                <h1 ><%=nome_adminstrador%></h1>
+              </div>
+            </div>
+            <a id="horario"></a>
+            <a id="btn_frota">Frota Empresa</a>
+            <a id="btn_lista_serviço">Lista serviços realizados</a>
+            <a id="btn_lista_manuntencao">Lista Manuntenção</a>
+            <a id="btn_conta">Informações Usuário</a>
+            <a id="btn_cadastrar">Cadastrar Veiculo</a>
+            <a id="btn_manuntencao">Registrar Manuntenção</a>
+            <a id="btn_serviço">Registrar Serviço</a>
+            <a href="/sair"><b>Sair da conta</b></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <br>
+    <main>  
+      <div class="titulo">
+        <h1><%=Titulo%> </h1>
+      </div>
+       <div id="Frota" >
+        <%if(veiculos_frota.length>0){%>
+             <%for(var i = 0;i<veiculos_frota.length;i++){%>
+                
+                <div>
+                  <img src="<%=veiculos_frota[i].img_veiculo%>">
+                  <p><%=veiculos_frota[i].nome_veiculo%></p>
+                  <button  onclick="visualizar('<%=veiculos_frota[i].id_veiculo%>','<%=veiculos_frota[i].id_empresa%>','<%=veiculos_frota[i].nome_empresa%>','<%=veiculos_frota[i].id_veiculo%>','<%=veiculos_frota[i].img_veiculo%>','<%=veiculos_frota[i].nome_veiculo%>','<%=veiculos_frota[i].desc_tipo_veiculo%>','<%=veiculos_frota[i].marca_veiculo%>','<%=veiculos_frota[i].ano_veiculo%>','<%=veiculos_frota[i].capacidade_veiculo%>');">Editar</button>
+                </div>
+            <%}%>
+          <%}%>     
+          <%if(veiculos_frota.length == []){%>
+
+            <div class="mensagem_valida">
+               <h1>Não há nenhum veiculo cadastrado , para administração</h1>
+             </div>
+
+          <%}%>     
+       </div>
+       <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+           <form  action="/salvar/alteracao/veiculo" method="post">
+                    <div class="input-caixa">
+                <label>ID Veiculo</label>
+                <input type="text" name="id_veiculo" id="item_8">
+              </div>
+              <div class="input-caixa">
+                <label>Nome Veiculo</label>
+                <input type="text" name="nome_veiculo" id="item">
+              </div>
+
+              <div class="input-caixa">
+                <label>Capacidade Veiculo</label>
+                <input type="text" name="capacidade_veiculo" id="item_4">
+              </div>
+
+              <div class="input-caixa">
+                <label>Img Veiculo</label>
+                <input type="text" name="img_veiculo" id="foto">
+              </div>
+
+              <div class="input-caixa">
+                <label>Ano Veiculo</label>
+                <input type="text" name="ano_veiculo" id="item_3">
+              </div>  
+
+
+              <div class="input-caixa">
+                <label>Marca Veiculo</label>
+                <input type="text" name="marca_veiculo" id="item_2">
+              </div>
+
+
+              <div class="input-caixa">
+                <label>ID Tipo Veiculo</label>
+                <input type="text" id="item_5">
+              </div>  
+
+
+              <div class="input-caixa">
+                <label>Tipo Veiculo</label>
+                <input type="text" id="item_1">
+              </div>
+
+              <div class="input-caixa">
+                  <label>Tipo Veiculo:</label>
+                <select name="id_tipo_veiculo">
+                    <%for(var i = 0 ;  i< tipo_veiculo.length;i++){%>
+                      <option value="<%=tipo_veiculo[i].id_tipo_veiculo%>"><%=tipo_veiculo[i].desc_tipo_veiculo%></option>
+                            <%}%>
+                    </select>
+                </div>
+                <div class="input-caixa">
+                  <label>ID Empresa Veiculo</label>
+                  <input type="text" id="item_7" name="id_empresa">
+                </div>
+
+                <div class="input-caixa">
+                  <label>Empresa Veiculo</label>
+                  <input type="text" id="item_6" >
+                </div>
+              <div class="botao">
+                  <div>
+                    <input type="submit" Value="Salvar alteração">
+                  </div>
+                  <div class="btn_cancelar">
+                    <input type="button" Value="Cancelar" id="cancelar">
+                  </div>
+                  <div class="btn_excluir">
+                    <input type="button" Value="Excluir" onclick="excluir_veiculo(id_veiculo.value)">
+                  </div>
+              </div>
+            </form>
+        </div>       
+      </div>
+   
+       <div id="servicos">
+            <%if(servicos.length==0){%>
+             <div class="mensagem_valida">
+               <h1>Não há nenhuma informações sobre serviços realizados</h1>
+             </div>
+            <%}%>   
+         <div>
+          <%if(servicos.length>0){%>
+            <%for(var i = 0;i<servicos.length;i++){%>
+            <div class="caixa-servico">
+            <div class="titulo">
+              <h1>Serviços realizado em <%=servicos[i].cidade_servico_destino%></h1>
+            </div>
+            <div class="servicos_descricao">
+              <p><b>Veiculo</b>:<%=servicos[i].nome_veiculo%></p>
+              <p><b>Data-Entrada</b>:<%=servicos[i].data_ida%></p>
+              <p><b>Data-saida</b> : <%=servicos[i].data_volta%></p>
+              <p><b>Cidade - Serviço</b>:<%=servicos[i].cidade_servico_destino%></p>
+              <p><b>Quilometragem</b> :<%=servicos[i].km_percorrido%></p>
+              <p><b>Tipo serviço</b> :<%=servicos[i].tipo_servico%></p>
+              <br>
+              <p><button type="button"  id="excluir1" onclick="excluir_servico(<%=servicos[i].id_servico%>)">Deletar Serviço Registrado
+                </button></p>
+            </div>
+            <%}%>       
+          </div>
+           </div>
+          <%}%>   
+       </div>
+   </div>
+ </div>
+</div>
+       <div id="manuntencao">
+            <%if(manuntencao.length==0){%>
+             <div class="mensagem_valida">
+               <h1>Não há nenhuma informações sobre serviços manuntenção de sua frota</h1>
+             </div>
+            <%}%>   
+         <table>
+          <%if(manuntencao.length>0){%>
+           <tr>
+             <th>Veiculo manuntenção</th> 
+             <th>Tipo serviço</th>
+             <th>Descrição</th>
+           </tr>
+           
+             <%for(var i = 0;i<manuntencao.length;i++){%>
+             <tr>
+                <td><%=manuntencao[i].nome_veiculo%></td>
+                <td><%=manuntencao[i].tipo_manuntencao%></td>
+                <td><%=manuntencao[i].desc_manuntencao%></td>
+                <td><button type="button"  id="excluir" onclick="excluir_manuntencao(<%=manuntencao[i].id_manuntencao%>)">Deletar 
+                </button></td>
+                </tr>
+            <%}%>      
+           <%}%>   
+         </table>
+       </div>
+            <div id="conta">
+              <%for(var i = 0;i<dados_adminstrador.length;i++){%>
+                 <form action="/alterar" method="post" >
+                  <legend>Dados Empresa</legend>
+                  <div class="input-caixa">
+                     <label>ID empresa</label>
+                     <input type="text"  value="<%=dados_adminstrador[i].id_empresa%>" name='id_empresa' >
+                   </div>
+                    <div class="input-caixa">
+                     <label>Nome empresa:</label>
+                     <input type="text" value="<%=dados_adminstrador[i].nome_empresa%>" name='nome_empresa'>
+                   </div>
+                   <div class="input-caixa">
+                     <label>Senha:</label>
+                     <input type="text" value="<%=dados_adminstrador[i].senha_empresa%>" name='senha_empresa'>
+                   </div>
+                   <div class="input-caixa">
+                     <label>Responsável:</label>
+                     <input type="text" value="<%=dados_adminstrador[i].responsavel_empresa%>" name='responsavel_empresa'>
+                   </div>
+                   <div class="input-caixa">
+                     <label>Telefone:</label>
+                     <input type="text" value="<%=dados_adminstrador[i].telefone_empresa%>" name='telefone_empresa'>
+                   </div>
+                   <div class="input-caixa">
+                     <label>E-mail:</label>
+                     <input type="text" value="<%=dados_adminstrador[i].email_empresa%>" name='email_empresa'>
+                   </div>
+                   <div class="input-caixa">
+                     <label>Endereço:</label>
+                     <input type="text"  value="<%=dados_adminstrador[i].endereco_empresa%>" name='endereco_empresa'>
+                   </div>
+                   <div class="input-caixa">
+                     <label>CNPJ:</label>
+                     <input type="text" value="<%=dados_adminstrador[i].cnpj_veiculo%>" name='cnpj_veiculo'>
+                   </div>
+                   <div class="input-caixa">
+                     <label>Informações Cidade:</label>
+                      <input type="text" value="Cidade:<%=dados_adminstrador[i].desc_cidade%>  / UF: <%=dados_adminstrador[i].uf_cidade%>" >
+                   </div>
+                   <div class='input-caixa'>
+                     <label><b>Alterar Cidade empresa</b></label>
+                     <select name="id_cidade">
+                      <option>Escolha com cidade para fazer alteração</option>
+                     <%for(var i = 0;i<cidades.length;i++){%>
+                     <option value="<%=cidades[i].id_cidade%>"><%=cidades[i].desc_cidade%></option>
+                     <%}%>
+                     </select>
+                   </div>
+                   <br>
+                   <div class="botao">
+                     <div>
+                       <input type="submit" Value="Salvar">
+                     </div>
+                     <div  class="btn_cancelar">
+                       <input type="submit" Value="Cancelar">
+                     </div>
+                   </div>
+                 </form>
+                  <%}%>
+            </div>
+            <div id="cadastrar">
+                 <form action="/salvar/veiculo" method="post" >
+                  <legend>Dados Administrador</legend>
+                   <div class="input-caixa">
+                     <label>Nome Veiculo:</label>
+                     <input type="text"  name='nome_veiculo' required>
+                   </div>
+                   <div class="input-caixa">
+                     <label>Capacidade Veiculo:</label>
+                     <input type="text"  name='capacidade_veiculo' required>
+                   </div>
+                   <div class="input-caixa">
+                     <label>Link imagem Veiculo:</label>
+                     <input type="text"  name='img_veiculo' required>
+                   </div>
+                   <div class="input-caixa">
+                     <label>Ano Veiculo:</label>
+                     <input type="text"  name='ano_veiculo' required>
+                   </div>
+                   <div class="input-caixa">
+                     <label>Marca Veiculo:</label>
+                     <input type="text"  name='marca_veiculo' required>
+                   </div>
+
+                   <div class="input-caixa">
+                     <label>Tipo Veiculo:</label>
+                     <select name="id_tipo_veiculo">
+                       <option>Selecione uma Opção</option>
+                        <%for(var i = 0 ;  i< tipo_veiculo.length;i++){%>
+                         <option value="<%=tipo_veiculo[i].id_tipo_veiculo%>"><%=tipo_veiculo[i].desc_tipo_veiculo%></option>
+                        <%}%>
+                     </select>
+                   </div>
+                   
+                   
+                   <div class="input-caixa">
+                     <label>Empresa:</label>
+                     <input type="text" value="<%=id_empresa%>" name='id_empresa' required>
+                   </div>
+                   
+                    <br>
+                    <div class="botao">
+                     <div>
+                       <input type="submit" Value="Cadastrar veiculo">
+                     </div>
+                     <div class="btn_cancelar">
+                       <input type="submit" Value="Cancelar">
+                     </div>
+                   </div>
+                </form>
+            </div>
+            <div id="form_manuntencao">
+            <form method="post" action="/salvar/manuntencao">
+           
+            <div class="input-caixa">
+              <label>Descrição do serviço</label>
+              <textarea name="desc_manuntencao" required  placeholder="Descreva o pedido"></textarea>
+            </div> 
+            <div class="input-caixa">
+              <label>Tipo Manunteçãp</label>
+              <input type="text" name="tipo_manuntencao" required>
+            </div>
+              <div class="input-caixa">
+              <label>Valor  Manunteção</label>
+              <input type="text" name="valor_manuntencao" required>
+            </div>
+            <div class="input-caixa">
+              <label>Data Manuntenção</label>
+              <input type="date" name="data_manuntencao" required>
+            </div>
+              <div class="input-caixa">
+              <label>Veiculo</label>
+              <select name="id_veiculo" required>
+                <%for(var i = 0; i<veiculos_frota.length;i++){%>
+                  <option  value="<%=veiculos_frota[i].id_veiculo%>"><%=veiculos_frota[i].nome_veiculo%></option>
+                <%}%>
+              </select>
+            </div>
+            <br>
+              <div class="botao">
+                  <div>
+                    <input type="submit" Value="Registrar Manuntenção">
+                  </div>
+                  <div class="btn_cancelar">
+                    <input type="submit" Value="Cancelar">
+                  </div>
+              </div>
+          </form>
+      </div>
+      <div id="form_servico">
+           <form method="post" action="/salvar/servico_realizado">
+            <div class="input-caixa">
+              <label>Tipo de Viagem:</label>
+              <select name="tipo_servico" required>
+                <option>Selecionar opção</option>
+                <option>Fretamento</option>
+                <option>Viagem Intermunicipal</option>
+                <option>Viagem Interestadual</option>
+                <option>Viagem Municipal</option>
+                <option>Viagem Escolar</option>
+              </select> 
+            </div>
+            <div class="input-caixa">
+              <label>KM percorrido</label>
+              <input type="text"  name="km_percorrido" >
+            </div>
+            <div class="input-caixa">
+              <label>Data Saida:</label>
+              <input type="date" name="data_ida" required placeholder="Data de saida">
+            </div>
+            <div class="input-caixa">
+              <label>Data entrada:</label>
+              <input type="date" name="data_volta" required placeholder="Data de chegada">
+            </div>
+            <div class="input-caixa">
+              <label>Cidade serviço:</label>
+              <input type="text" name="cidade_servico_destino" required placeholder="Cidade de serviço">
+            </div>
+            <div class="input-caixa">
+              <label>Cidade Origem:</label>
+              <input type="text" name="cidade_servico_origem" required placeholder="Estado de serviço">
+            </div>
+            
+            <br>
+              <div class="botao">
+                  <div>
+                    <input type="submit" Value="Registrar Serviço">
+                  </div>
+                  <div class="btn_cancelar">
+                    <input type="submit" Value="Cancelar">
+                  </div>
+              </div>
+          </form>
+      </div>
+    </main>
+     <footer class="footer">
+      <p>&copy; Sistema Gerenciamento Frota - 2018 >> Gen-Fro</p>
+    </footer>
+    <script type="text/javascript" src="../js/display.js"></script>
+     <script type="text/javascript" src="../js/visualizar.js"></script>
+  </body>
+</html>

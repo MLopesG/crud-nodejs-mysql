@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Gen-Fro</title>
+	<meta charset="utf-8">
+	<base href="/">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<main>	
+	<form action="/logar/usuario" method="post">
+		<div class="logo">
+		   <img src="img/logo1.png">
+		</div>
+		<div class="input-caixa">
+			<label>Administrador:</label>
+			<input type="text" value="<%=login.administrador%>" name="administrador" autofocus placeholder="Nome administrador empresa">
+		</div>
+		<div class="input-caixa">
+			<label>Senha:</label>
+			<input type="password" name="senha" placeholder="Senha administrador">
+		</div>
+		<br>
+		<div class="input-caixa">
+			<input type="submit" value="Entrar">
+		</div>
+		<br>
+		 <div class="validação">
+            <%for (var i = 0; i < validacao.length; i++) {%>
+            <ul >
+              <li><%=validacao[i].msg %></li>
+            </ul>
+            <%}%>
+          </div>
+          <br>
+		<div class="cadastrar">
+			<p>Seja um parceiro , <a href="">Cadastre </a>acompanhe sua empresa em tempo real</p>
+		</div>
+	</form>
+</main>	
+</body>
+</html>

@@ -1,0 +1,392 @@
+ * {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    outline:none;
+}
+:root {
+    --color-fundo-loader:#142545;
+ 
+    --font: #fff;
+    --font_logo: #a9acb2;
+    --font_2: #000;
+}
+html,
+body {
+    height: 100vh;
+    background: #f7f7f7;
+}
+main{
+  /*padding:10px 10px;*/
+  width:100%;
+  margin:auto;
+  box-shadow: 1px 1px 1px 1px solid;
+}
+header{
+  padding:20px 20px;
+  display: flex;
+  flex-direction: column;
+  background:var(--color-fundo-loader);
+}
+
+legend{
+  line-height:2rem;
+  color:#212121;
+}
+
+header .logo{
+  align-items: center;
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+}
+nav{
+  align-items:center;
+  display:flex;
+  justify-content: center;
+}
+header .logo img{
+  height: inherit; 
+}
+.page:not(:target){
+  display: none;
+}
+
+.page:target{
+  display: flex;
+}
+#termo{
+  
+  flex-direction:column;
+}
+.titulo{
+  padding:10px 20px;
+}
+.titulo h1{
+  padding:10px 10px;
+  border-left:4px solid var(--color-fundo-loader);
+  font-size:1rem;
+  font-weight:inherit;
+}
+#termo h2{
+  line-height:2rem;
+  font-size:1rem;
+}
+#termo p{
+  font-size:1rem;
+}
+
+#Frota,#Frota_serviço,#Frota_manu,#Frota_realizad{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-around;
+}
+#Frota div{
+  align-items:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:5px 5px;
+}
+#Frota img{
+  max-width:10rem;
+  height:15vh; 
+}
+#Frota p ,#Frota_serviço p ,#Frota_manu p,#Frota_realizad p{
+  text-align:center;
+  line-height:2rem;
+}
+#Frota button,#Frota_serviço button,#Frota_manu button,#Frota_realizad button{
+  padding:0.3rem 0.8rem;
+  color:var(--font);
+  background:var(--color-fundo-loader);
+  border:1px solid #dedede;
+}
+input,button:focus{
+  outline:none;
+}
+.btn_abre {
+    background-color:unset;
+    color: white;
+    padding: 10px 1rem;
+    font-size: 0.8rem;
+    border: 1px solid #ddd;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+  text-align:center;
+    color: black;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+    border-bottom:1px solid #ddd;
+    font-size:0.8rem;
+}
+.dropdown-content a:hover {
+  background-color: var(--color-fundo-loader);
+  color:#fff; 
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.input-caixa{
+  display:flex;
+  flex-direction:column;
+}
+#conta{
+  flex-direction:column;
+}
+.botao{
+  display:flex;
+  justify-content:flex-end;
+  
+}
+.botao div{
+  margin-right:5px;
+}
+input[type='submit']{
+  border:none;
+  background:var(--color-fundo-loader);
+  color:var(--font);
+  padding:0.55rem 2rem;
+}
+label{
+  line-height:2rem;
+  font-size:0.8rem;
+}
+input,select{
+  padding:0.4rem;
+}
+ 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+textarea {
+  height:200px;
+}
+th, td{
+    padding: 6px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.sbre p{
+  font-size:0.9rem;
+  border-bottom:1px solid #dedede;
+  padding:10px 20px;
+}
+caption{
+  background:var(--color-fundo-loader);
+  color:var(--font);
+  padding:0.6rem;
+}
+tr:hover {background-color:#f5f5f5;}
+.cliente{
+  align-items:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border:1px solid #ddd;
+  padding:20px 20px;
+}
+.cliente div{
+  max-width:15rem;
+}
+.foto img{
+  width:12rem;
+}
+.cliente div h1{
+  font-size:0.9rem;
+}
+td button{
+  background:var(--color-fundo-loader);
+  border:none;
+  padding:0.5rem;
+  width:80px;
+  color:#fff;
+}
+.btn_cancelar input[type='button']{
+  background: #FFCC00;
+  width:100px;  
+}
+.btn_excluir input[type='button']{
+  background:#b22222;
+  width:100px;
+}
+.servicos_descricao p{
+  font-size:0.8rem;
+  line-height:1.5rem;
+}
+.servicos_descricao  button{
+  border:none;
+  background:var(--color-fundo-loader);
+  color:#fff;
+  padding:0.5rem;
+}
+.caixa-servico div{
+  width:50%;
+}
+.footer p{
+  text-align:center;
+  font-size:0.8rem;
+  line-height:4rem;
+}
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 1% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    height:100%;
+  
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.botao input[type='button']{
+  border:none;
+  color:#fff;
+  padding:0.5rem;
+}
+ form{
+  padding:20px 20px;
+}
+.mensagem_valida{
+  text-align:center;
+  line-height:2rem;
+}
+.mensagem_valida h1{
+  color:var(--color-fundo-loader);
+  font-weight:inherit;
+  font-size:1rem;
+}
+@media screen and (min-width: 640px){
+  header{
+    align-items: center;
+    flex-direction: row;
+    padding: 0 2rem;
+  }
+  nav{
+    display:flex;
+    flex:1;
+    justify-content:flex-end;
+    position:relative;
+    right:2rem;
+  }
+main{
+  padding:10px 10px;
+  width:80%;
+  margin:auto;
+  box-shadow: 1px 1px 1px 1px rgb(233, 232, 232);
+  background: #fff;
+}
+.footer {
+    position:relative;
+    left: 0;
+    bottom: 0;
+    color: var(--font_2);
+    text-align: center;
+    padding:2rem;
+}
+.footer p{
+  font-size:1rem;
+}
+#lista h1{
+  text-align:center;
+  font-weight:inherit;
+  font-size:1rem;
+  color:var(--color-fundo-loader);
+  line-height:2rem;
+}
+button a{
+  text-decoration:none;
+  color:var(--font);
+}
+#itens{
+  align-items:center;
+  flex-direction:column;
+}
+#itens h1{
+  font-weight:inherit;
+  font-size:1rem;
+  line-height:4rem;
+  color:#212121;
+}
+#itens button{
+  background:var(--color-fundo-loader);
+  border:1px solid #ddd;
+  padding:0.6rem;
+  color:var(--font);
+  border-right:2px solid var(--font);
+}
+#itens button:hover{
+  background:#212121;
+}
+#manuntenção,#realizar,#add{
+  flex-direction:column;
+}
+ form{
+  padding:20px 20px;
+}
+#listas{
+  flex-direction:column;
+}
+#listas h1{
+  text-align:center;
+  font-weight:inherit;
+  font-size:1rem;
+  color:red;
+}
+.titulo{
+  padding:10px 20px;
+}
+
+.modal-content {
+    width: 60%; 
+}
+.mensagem_valida{
+  text-align:center;
+  line-height:4rem;
+}
+#Frota img{
+  max-width:15rem;
+  height:15vh; 
+}
+}
